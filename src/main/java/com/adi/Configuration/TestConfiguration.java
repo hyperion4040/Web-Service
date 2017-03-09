@@ -6,12 +6,13 @@ import com.adi.Repository.BookRepository;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by hyperion on 09.03.17.
  * This Configuration file was been created to move configuration bean from PomApplication class
  */
-//@Configuration
+@Configuration
 public class TestConfiguration {
 
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(PomApplication.class);
