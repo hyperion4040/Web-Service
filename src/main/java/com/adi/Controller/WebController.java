@@ -1,6 +1,6 @@
 package com.adi.Controller;
 
-import com.adi.Model.Book;
+import com.adi.Model.Book1;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +23,12 @@ public class WebController extends WebMvcConfigurerAdapter {
     }
 
     @GetMapping("/")
-    public String showForm(Book book) {
+    public String showForm(Book1 book1) {
         return "form";
     }
 
     @PostMapping("/")
-    public String checkPersonInfo(@Valid Book book, BindingResult bindingResult) {
+    public String checkPersonInfo(@Valid Book1 book1, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "form";
