@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<form action="#" th:action="@{/}" th:object="${book}" method="post">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><label>
+                <input type="text" th:field="*{title}"/>
+            </label></td>
+            <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</td>
+
+            <td>Age:</td>
+            <td><label>
+                <input type="text" th:field="*{author}"/>
+            </label></td>
+            <td th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author Error</td>
+
+            <td>
+                <button type="submit">Submit</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
