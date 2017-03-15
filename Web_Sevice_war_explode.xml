@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Web-Sevice:war explode">
+    <output-path>$PROJECT_DIR$/out/artifacts/Web_Sevice_war_explode</output-path>
+    <root id="archive" name="Web-Sevice_war explode.war" />
+  </artifact>
+</component>
