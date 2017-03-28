@@ -32,11 +32,11 @@ public class TestConfiguration {
             }
             log.info("");
 
-            log.info("Search for concrete author = Tolkien");
-            log.info("......................................");
-            for (Book tolkien : repository.findByAuthor("Tolkien")) {
-                log.info(tolkien.toString());
-            }
+//            log.info("Search for concrete author = Tolkien");
+//            log.info("......................................");
+//            for (Book tolkien : repository.findByAuthor("Tolkien")) {
+//                log.info(tolkien.toString());
+//            }
         };
     }
 }

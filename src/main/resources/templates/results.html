@@ -1,5 +1,19 @@
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <body>
 Congratulations! You are old enough to sign up for this site.
+<form action="#" th:action="@{/}" th:object="${book}" method="get">
+<table>
+    <tr>
+        <td>Author</td>
+        <td><label>
+            <output type="text" th:field="*{author}"></output>
+        </label></td>
+        <td>Title</td>
+        <td><label>
+            <output type="text" th:field="*{title}"></output>
+        </label></td>
+    </tr>
+</table>
+</form>
 </body>
 </html>

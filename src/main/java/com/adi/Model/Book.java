@@ -16,6 +16,8 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @ToString
+@Setter
+@Getter
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
