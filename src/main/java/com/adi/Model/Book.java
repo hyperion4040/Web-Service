@@ -25,10 +25,14 @@ public class Book {
 
     @NonNull
     @Column
+//    @Size(min = 3, max = 30)
+//    @Pattern(regexp = "^[A-Za-z]+$")
     private String title;
 
     @NonNull
     @Column
+//    @Size(min = 2)
+//    @Pattern(regexp = "^[A-Za-z]+$")
     private String author;
 
 

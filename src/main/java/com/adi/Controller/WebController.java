@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -16,46 +17,20 @@ import java.util.List;
  * Web Controller to validation
  */
 @RestController
-public class WebController { //extends WebMvcConfigurerAdapter {
+@RequestMapping("/library")
+public class WebController extends WebMvcConfigurerAdapter {
 
 
     private static final Logger logger = LoggerFactory
             .getLogger(WebController.class);
+
+    private final BookRepository bookRepository;
+
     @Autowired
-     BookRepository bookRepository;
-
-//    @Autowired
-//    public WebController(BookRepository bookRepository) {
-//        this.bookRepository = bookRepository;
-//    }
-
-//    @Override
-//    public void addViewControllers(ViewControllerRegistry registry) {
-//        registry.addViewController("/results").setViewName("results");
-//    }
-
-//    @GetMapping("/")
-//    public String showForm(Book1 book1) {
-//        return "form";
-//    }
-//
-//    @PostMapping("/")
-//    public String checkPersonInfo(@Valid Book1 book1, BindingResult bindingResult) {
-//
-//        if (bindingResult.hasErrors()) {
-//            return "form";
-//        }
-//
-//        return "redirect:/results";
-//    }
-    @GetMapping("/Book/get")
-    public String getBook(Book book){return "Start";}
-
-    @ModelAttribute("addBook")
-    public Book createNewBook(){
-        return new Book();
-
+    public WebController(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
     }
+
 
     @PutMapping("/Book/add")
     public String addBook(@Valid @RequestBody Book book, BindingResult bindingResult){
@@ -68,30 +43,14 @@ public class WebController { //extends WebMvcConfigurerAdapter {
         }
         else
         {
-
             book.setId(null);
             bookRepository.save(book);
             return "We now have " + bookRepository.count() + " books";
-
-
-
         }
 
     }
 
-    @GetMapping("/get-by-email")
-    @ResponseBody
-    public String getByEmail(String author) {
-        String bookId;
-        try {
-            Book book = bookRepository.findByAuthor(author);
-            bookId = String.valueOf(book.getId());
-        }
-        catch (Exception ex) {
-            return "Book not found";
-        }
-        return "The book id is: " + bookId ;
-    }
+
 
     @RequestMapping("/book/find/{name}")
     public List<Book> find(@PathVariable String name) {

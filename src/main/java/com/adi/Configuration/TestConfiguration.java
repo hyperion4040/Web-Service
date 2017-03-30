@@ -18,25 +18,21 @@ public class TestConfiguration {
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(PomApplication.class);
 
     @Bean
-    public CommandLineRunner demo(BookRepository repository) {
+    public CommandLineRunner demo(BookRepository bookRepository) {
         return (String... args) -> {
-            repository.save(new Book("Lord of the rings", "Tolkien"));
-            repository.save(new Book("Hobbit", "Tolkien"));
-            repository.save(new Book("XXX", "YYY"));
+            bookRepository.save(new Book("Lord of the rings", "Tolkien"));
+            bookRepository.save(new Book("Hobbit", "Tolkien"));
+            bookRepository.save(new Book("XXX", "YYY"));
 
             // fetch all customers
-            log.info("Customers found with findAll():");
+            log.info("Books found with findAll():");
             log.info("-------------------------------");
-            for (Book customer : repository.findAll()) {
-                log.info(customer.toString());
+            for (Book book : bookRepository.findAll()) {
+                log.info(book.toString());
             }
             log.info("");
 
-//            log.info("Search for concrete author = Tolkien");
-//            log.info("......................................");
-//            for (Book tolkien : repository.findByAuthor("Tolkien")) {
-//                log.info(tolkien.toString());
-//            }
+
         };
     }
 }
