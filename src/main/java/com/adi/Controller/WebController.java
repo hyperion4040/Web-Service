@@ -5,6 +5,7 @@ import com.adi.Repository.BookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -31,21 +32,30 @@ public class WebController extends WebMvcConfigurerAdapter {
         this.bookRepository = bookRepository;
     }
 
+    @GetMapping("/book/add")
+    public String addBookForm(Model model){
+//        model.addAttribute("addBook",new Book());
+        return "addBook";
+    }
 
-    @PutMapping("/Book/add")
-    public String addBook(@Valid @RequestBody Book book, BindingResult bindingResult){
+
+    @PostMapping("/book/add")
+    public String addBookSubmit(@Valid  @ModelAttribute Book book, BindingResult bindingResult, Model model){
 
 
         if (bindingResult.hasErrors())
         {
             logger.info("Errors");
-            return "Start";
+            return "addBook";
         }
         else
         {
+            model.addAttribute("author", book.getAuthor());
+            model.addAttribute("title",book.getTitle());
             book.setId(null);
             bookRepository.save(book);
-            return "We now have " + bookRepository.count() + " books";
+            logger.info( "We now have " + bookRepository.count() + " books");
+            return "result";
         }
 
     }

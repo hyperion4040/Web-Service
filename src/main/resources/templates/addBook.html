@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>View Books</title>
+</head>
+<body>
+ <form action="#" th:action="@{/addBook}" th:object="${addBook}" method="post" >
+     <table border="1">
+        <tr>
+            <td>Title</td>
+            <td> <label> <input type="text" th:field="*{title}"  /> </label></td>
+
+        </tr>
+        <tr>
+            <td>Author </td>
+            <td><label><input type="text" th:field="*{author}"  /> </label> </td>
+        </tr>
+         <tr>
+             <td><input type="submit" value="Submit"  /> </td>
+         </tr>
+     </table>
+ </form>
+</body>
+</html>
