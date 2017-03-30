@@ -2,16 +2,15 @@ package com.adi.Model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by hyperion on 08.03.17.
  * Weak point for now of application
  */
 @Entity
+@Data
+@Table(name = "books")
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
@@ -23,10 +22,13 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
     @NonNull
+    @Column
     private String title;
 
     @NonNull
+    @Column
     private String author;
 
 

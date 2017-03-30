@@ -1,61 +1,54 @@
 package com.adi.Controller;
 
 import com.adi.Model.Book;
-import com.adi.Model.Book1;
 import com.adi.Repository.BookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by hyperion on 09.03.17.
  * Web Controller to validation
  */
-@Controller
-public class WebController extends WebMvcConfigurerAdapter {
+@RestController
+public class WebController { //extends WebMvcConfigurerAdapter {
 
 
     private static final Logger logger = LoggerFactory
             .getLogger(WebController.class);
-
-    private final BookRepository bookRepository;
-
     @Autowired
-    public WebController(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+     BookRepository bookRepository;
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/results").setViewName("results");
-    }
+//    @Autowired
+//    public WebController(BookRepository bookRepository) {
+//        this.bookRepository = bookRepository;
+//    }
 
-    @GetMapping("/")
-    public String showForm(Book1 book1) {
-        return "form";
-    }
+//    @Override
+//    public void addViewControllers(ViewControllerRegistry registry) {
+//        registry.addViewController("/results").setViewName("results");
+//    }
 
-    @PostMapping("/")
-    public String checkPersonInfo(@Valid Book1 book1, BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-            return "form";
-        }
-
-        return "redirect:/results";
-    }
-    @GetMapping("/addBook")
+//    @GetMapping("/")
+//    public String showForm(Book1 book1) {
+//        return "form";
+//    }
+//
+//    @PostMapping("/")
+//    public String checkPersonInfo(@Valid Book1 book1, BindingResult bindingResult) {
+//
+//        if (bindingResult.hasErrors()) {
+//            return "form";
+//        }
+//
+//        return "redirect:/results";
+//    }
+    @GetMapping("/Book/get")
     public String getBook(Book book){return "Start";}
 
     @ModelAttribute("addBook")
@@ -64,8 +57,8 @@ public class WebController extends WebMvcConfigurerAdapter {
 
     }
 
-    @PostMapping("/addBook")
-    public String addBook(@Valid Book book, BindingResult bindingResult, Model model){
+    @PutMapping("/Book/add")
+    public String addBook(@Valid @RequestBody Book book, BindingResult bindingResult){
 
 
         if (bindingResult.hasErrors())
@@ -76,13 +69,12 @@ public class WebController extends WebMvcConfigurerAdapter {
         else
         {
 
-            logger.info("Book added corect");
-            model.addAttribute("addBook",book);
-
+            book.setId(null);
             bookRepository.save(book);
+            return "We now have " + bookRepository.count() + " books";
 
 
-            return "result";
+
         }
 
     }
@@ -101,6 +93,13 @@ public class WebController extends WebMvcConfigurerAdapter {
         return "The book id is: " + bookId ;
     }
 
-
+    @RequestMapping("/book/find/{name}")
+    public List<Book> find(@PathVariable String name) {
+        return bookRepository.findByTitleIgnoreCaseContaining(name);
+    }
+    @RequestMapping("/book/findall")
+    public List<Book> findAll() {
+        return bookRepository.findAll();
+    }
 
 }

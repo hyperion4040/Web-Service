@@ -1,17 +1,19 @@
 package com.adi.Repository;
 
 import com.adi.Model.Book;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * hmm
  * Created by hyperion on 08.03.17.
  */
-@Transactional
-public interface BookRepository extends CrudRepository<Book,Long>{
+@Repository
+public interface BookRepository extends JpaRepository<Book,Long> {
 
         Book findByAuthor(String author);
 
+        List<Book> findByTitleIgnoreCaseContaining(String name);
 }
