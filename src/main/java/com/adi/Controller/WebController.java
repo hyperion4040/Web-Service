@@ -5,19 +5,21 @@ import com.adi.Repository.BookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * Created by hyperion on 09.03.17.
  * Web Controller to validation
  */
-@RestController
+@Controller
 @RequestMapping("/library")
 public class WebController extends WebMvcConfigurerAdapter {
 
@@ -34,13 +36,13 @@ public class WebController extends WebMvcConfigurerAdapter {
 
     @GetMapping("/book/add")
     public String addBookForm(Model model){
-//        model.addAttribute("addBook",new Book());
+        model.addAttribute("addBook",new Book());
         return "addBook";
     }
 
 
     @PostMapping("/book/add")
-    public String addBookSubmit(@Valid  @ModelAttribute Book book, BindingResult bindingResult, Model model){
+    public String addBookSubmit(@Valid  Book book, BindingResult bindingResult, Model model){
 
 
         if (bindingResult.hasErrors())
@@ -62,13 +64,6 @@ public class WebController extends WebMvcConfigurerAdapter {
 
 
 
-    @RequestMapping("/book/find/{name}")
-    public List<Book> find(@PathVariable String name) {
-        return bookRepository.findByTitleIgnoreCaseContaining(name);
-    }
-    @RequestMapping("/book/findall")
-    public List<Book> findAll() {
-        return bookRepository.findAll();
-    }
+
 
 }

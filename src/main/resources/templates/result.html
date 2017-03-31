@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Result</title>
@@ -9,11 +9,15 @@
 <table>
     <tr>
         <td>Author</td>
-        <td>${author}</td>
+        <td><label>
+            <output type="text" th:field="*{author}"></output>
+        </label></td>
     </tr>
     <tr>
         <td>Title</td>
-        <td>${title}</td>
+        <td><label>
+            <output type="text" th:field="*{title}"></output>
+        </label></td>
     </tr>
 </table>
 
