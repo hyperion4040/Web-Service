@@ -3,6 +3,7 @@ package com.adi.Model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 /**
@@ -27,13 +28,13 @@ public class Book {
     @NonNull
     @Column
     @Size(min = 3, max = 30)
-//    @Pattern(regexp = "^[A-Za-z]+$")
+    @Pattern(regexp = "[a-zA-Z]+(\\s+[a-zA-Z]+)*",message = "invalid title name")
     private String title;
 
     @NonNull
     @Column
-    @Size(min = 2)
-//    @Pattern(regexp = "^[A-Za-z]+$")
+    @Size(min = 3)
+    @Pattern(regexp = "[a-zA-Z]+(\\s+[a-zA-Z]+)*",message = "invalid autor name")
     private String author;
 
 
