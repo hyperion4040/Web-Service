@@ -27,6 +27,7 @@ public class WebController extends WebMvcConfigurerAdapter {
     private static final Logger logger = LoggerFactory
             .getLogger(WebController.class);
 
+
     private final BookRepository bookRepository;
 
     @Autowired
@@ -36,7 +37,7 @@ public class WebController extends WebMvcConfigurerAdapter {
 
     @GetMapping("/book/add")
     public String addBookForm(Model model){
-        model.addAttribute("addBook",new Book());
+        model.addAttribute("book",new Book());
         return "addBook";
     }
 
@@ -52,6 +53,7 @@ public class WebController extends WebMvcConfigurerAdapter {
         }
         else
         {
+
             model.addAttribute("author", book.getAuthor());
             model.addAttribute("title",book.getTitle());
             book.setId(null);

@@ -5,16 +5,17 @@
     <title>View Books</title>
 </head>
 <body>
- <form action="#" th:action="@{/library/book/add}" th:object="${addBook}" method="post" >
+ <form action="#" th:action="@{/library/book/add}" th:object="${book}" method="post" >
      <table border="1">
         <tr>
             <td>Title</td>
             <td> <label> <input type="text" th:field="*{title}"  /> </label></td>
-
+            <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</td>
         </tr>
         <tr>
             <td>Author </td>
             <td><label><input type="text" th:field="*{author}"  /> </label> </td>
+            <td th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Name Error</td>
         </tr>
          <tr>
              <td><input type="submit" value="Submit"  /> </td>

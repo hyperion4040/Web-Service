@@ -3,6 +3,7 @@ package com.adi.Model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 /**
  * Created by hyperion on 08.03.17.
@@ -25,13 +26,13 @@ public class Book {
 
     @NonNull
     @Column
-//    @Size(min = 3, max = 30)
+    @Size(min = 3, max = 30)
 //    @Pattern(regexp = "^[A-Za-z]+$")
     private String title;
 
     @NonNull
     @Column
-//    @Size(min = 2)
+    @Size(min = 2)
 //    @Pattern(regexp = "^[A-Za-z]+$")
     private String author;
 
