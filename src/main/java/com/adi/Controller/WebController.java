@@ -41,6 +41,12 @@ public class WebController extends WebMvcConfigurerAdapter {
         return "addBook";
     }
 
+    @GetMapping("/book/result")
+    public String showAddedBook(Model model){
+        model.addAttribute("book", bookRepository.findAll());
+        return "result";
+    }
+
 
     @PostMapping("/book/add")
     public String addBookSubmit(@Valid  Book book, BindingResult bindingResult, Model model){
@@ -56,6 +62,7 @@ public class WebController extends WebMvcConfigurerAdapter {
 
             model.addAttribute("author", book.getAuthor());
             model.addAttribute("title",book.getTitle());
+//            model.addAttribute("readDate",book.getReadDate());
             book.setId(null);
             bookRepository.save(book);
             logger.info( "We now have " + bookRepository.count() + " books");

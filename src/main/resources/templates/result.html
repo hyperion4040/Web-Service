@@ -1,25 +1,35 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html >
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+
+>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Result</title>
 </head>
 <body>
-<h2>Information about added book</h2>
+<h1>Information about Books</h1>
+<!--<form action="#" th:action="/library/book/result" th:object="${book}" method="get">-->
+
+
 <table>
+<tr>
+    <td>Title</td>
+    <td>Author</td>
+</tr>
+
     <tr>
-        <td>Author</td>
-        <td><label>
-            <output type="text" th:field="*{author}"></output>
-        </label></td>
-    </tr>
-    <tr>
-        <td>Title</td>
-        <td><label>
-            <output type="text" th:field="*{title}"></output>
-        </label></td>
+
+        <!--/*@thymesVar id="title" type="templates"*/-->
+        <td data-th-text="${title}" ></td>
+
+
+        <!--/*@thymesVar id="author" type="templates"*/-->
+        <td data-th-text="${author}"></td>
+
+
     </tr>
 </table>
-
+<!--</form>-->
 </body>
 </html>

@@ -39,5 +39,12 @@ public class Book {
 
 
 
+//    @NonNull
+//    @Column
+//    @DateTimeFormat(pattern = "dd/MM/yyyy")
+//    private Date readDate;
+
+
+
 
 }

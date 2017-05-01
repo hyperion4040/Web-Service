@@ -10,15 +10,22 @@
         <tr>
             <td>Title</td>
             <td> <label> <input type="text" th:field="*{title}"  /> </label></td>
-            <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</td>
+            <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</td>
         </tr>
         <tr>
             <td>Author </td>
             <td><label><input type="text" th:field="*{author}"  /> </label> </td>
-            <td th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Name Error</td>
+            <td th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author Error</td>
         </tr>
+         <!--<tr>-->
+             <!--<td>Date Time </td>-->
+             <!--<td><label><input type="Date" th:field="*{readDate}"  /> </label> </td>-->
+             <!--<td th:if="${#fields.hasErrors('readDate')}" th:errors="*{readDate}">Date Error</td>-->
+         <!--</tr>-->
+         <!--<tr>-->
          <tr>
-             <td><input type="submit" value="Submit"  /> </td>
+             <td><input type="submit" value="Submit"  /></td>
+            <td> <input type="button" value="Show all books"/></td>
          </tr>
      </table>
  </form>
